@@ -903,8 +903,12 @@ func prepareNL(text string) string {
 			if token == "" {
 				result += "\n" + v
 			} else {
-				result += fmt.Sprintf("\n%s %s: %s", token[:len(token)-1], tokens[token][index], v)
-				index++
+				if len(tokens[token]) > index {
+					result += fmt.Sprintf("\n%s %s: %s", token[:len(token)-1], tokens[token][index], v)
+					index++
+				} else {
+					break
+				}
 			}
 		}
 	}
